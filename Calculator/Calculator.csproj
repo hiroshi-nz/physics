@@ -50,7 +50,9 @@
     <Compile Include="Class\Entities.cs" />
     <Compile Include="Class\Environment.cs" />
     <Compile Include="Class\Example.cs" />
+    <Compile Include="Class\Examples\ExampleIntersection.cs" />
     <Compile Include="Class\Line.cs" />
+    <Compile Include="Class\LineSegment.cs" />
     <Compile Include="Class\MathHelper.cs" />
     <Compile Include="Class\Trash\TrackerEntry.cs" />
     <Compile Include="Class\Trash\ObjectTracker.cs" />

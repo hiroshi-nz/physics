@@ -44,7 +44,10 @@ namespace Calculator.Class
             {
                 //make rounding method for the simplified version
 
-                if (Convert.ToInt16(entity.location.x) < sizeX && Convert.ToInt16(entity.location.y) < sizeY)
+                int intX = Convert.ToInt16(entity.location.x);
+                int intY = Convert.ToInt16(entity.location.y);
+
+                if (0 <= intX && intX < sizeX && 0 <= intY && intY < sizeY)// checking object is within boundary or not.
                 {
                     environment[Convert.ToInt16(entity.location.x), Convert.ToInt16(entity.location.y)] = entity.id;
                 }

@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 
 /*
  Always make sure noSlope is false! 
+
+I need to implement DoIntersect for when lines are horizontal or vertical.
  */
 namespace Calculator.Class
 {
@@ -18,8 +20,8 @@ namespace Calculator.Class
         public bool yConstant = false;
         public double slope = 0;
         public double offset = 0;
-        public double x = 0;
-        public double y = 0;
+        public double x = 0;//only used when x is constant.
+        public double y = 0;//only used when y is constant.
 
         public Line(XY firstPoint, XY secondPoint)
         {
@@ -44,6 +46,26 @@ namespace Calculator.Class
                     slope = yDiff / xDiff;
                     offset = slope * - firstPoint.x + firstPoint.y;              
                 }
+            }
+        }
+
+        public Line(double slope, double offset)
+        {
+            this.slope = slope;
+            this.offset = offset;
+        }
+
+        public Line(bool xConstant, bool yConstant, double constantValue)//constructor for when x or y is constant(slope is zero).
+        {
+            if (xConstant)
+            {
+                this.xConstant = true;
+                x = constantValue;
+            }
+            else if(yConstant)
+            {
+                this.yConstant = true;
+                y = constantValue;
             }
         }
 
@@ -83,6 +105,65 @@ namespace Calculator.Class
                 y = this.y;
             }
             return y;
+        }
+
+        public XY DoIntersect(Line secondLine)// I only implemented for lines with slopes, so I need to work on this later for horizontal and vertical lines.
+        {
+            XY commonPoint = new XY(0, 0);
+
+            if (noSlope == false)
+            {
+                if (secondLine.noSlope == false)//both of them has slope
+                {
+                    double a = - slope * secondLine.offset / secondLine.slope + offset;
+                    double b = 1 - slope / secondLine.slope;
+                    commonPoint.y = a / b;
+                    commonPoint.x = commonPoint.y - offset / slope;
+                }
+                else if (secondLine.xConstant == true)
+                {
+
+                }
+                else if (secondLine.yConstant == true)
+                {
+
+                }
+
+
+            }
+            else if (xConstant == true)
+            {
+                if (secondLine.noSlope == false)
+                {
+
+                }
+                else if (secondLine.xConstant == true)//Parallel
+                {
+
+                }
+                else if (secondLine.yConstant == true)
+                {
+
+                }
+            }
+            else if (yConstant == true)
+            {
+
+                if (secondLine.noSlope == false)
+                {
+
+                }
+                else if (secondLine.xConstant == true)
+                {
+
+                }
+                else if (secondLine.yConstant == true)//Parallel
+                {
+
+                }
+            }
+
+            return commonPoint;
         }
 
     }

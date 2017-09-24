@@ -71,9 +71,16 @@ namespace Calculator
 
         private void button5_Click(object sender, EventArgs e)
         {
-            Line line = new Line(new Class.XY(0, 6), new Class.XY(1, 6));
-            msg.Text = Check.CheckLine(line);
+            Line firstLine = new Line(new Class.XY(0, 5), new Class.XY(1, 6));
+            msg.Text = Check.CheckLine(firstLine);
+            Line secondLine = new Class.Line(5, 5);
+
+            XY commonPoint = firstLine.DoIntersect(secondLine);
+
+            msg.Text += Check.CheckXY(commonPoint);
             
+
+
         }
     }
 }
