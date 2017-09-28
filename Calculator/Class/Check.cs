@@ -103,6 +103,17 @@ namespace Calculator.Class
                 msg += CheckLine(line);
             }
 
+            return msg;
+        }
+
+        public static string CheckLineSegment(LineSegment lineSegment)
+        {
+            string msg = "";
+
+            Line lineBuffer = new Line(lineSegment.firstPoint, lineSegment.secondPoint);
+            msg = CheckLine(lineBuffer);
+            msg += CheckXY(lineSegment.firstPoint);
+            msg += CheckXY(lineSegment.secondPoint);
 
             return msg;
         }
